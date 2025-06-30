@@ -271,7 +271,7 @@ day10(java 8일차)
    public class Main{
       main(){
          
-         MyClass refVar =    new MyClass();
+         MyClass refVar   =   new MyClass();
          --------------      --------------
          1번         2번
                ------

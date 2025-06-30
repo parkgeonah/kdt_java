@@ -34,7 +34,7 @@ public class MyClassA {
 //      instanceMethod1();   //스태틱메소드에서 인스턴스 메소드 호출 불가
 //      intanceVar = 1000; //스태틱메소드에서 인스턴스 변수 접근 불가
       staticVar = 1000;
-      System.out.println("스태틱메소드1에서 스태틱 변수갑: " + staticVar);
+      System.out.println("스태틱메소드1에서 스태틱 변수값: " + staticVar);
       staticMethod2();
       
    }
