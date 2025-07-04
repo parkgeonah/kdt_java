@@ -1,0 +1,133 @@
+day18(java 16일차)
+API -> Object 클래스 -> Wrapper 클래스 -> 컬렉션 프레임워크
+
+1. API(Application Programming Interface)
+   응용 프로그래밍 인터페이스
+
+   내부 API
+      JDK(JRE, JVM) 설치 시 제공해주는 기본 api
+      자바로 어플리케이션을 쉽게 구현할 수 있도록 한 라이브러리 집합
+      https://docs.oracle.com/en/java/javase/17/docs/api/index.html
+   외부 API
+      다른 개발자들이 개발한 패키지 및 클래스들을 의미한다
+      보통 jar 파일로 배포하며 자바 프로젝트에 build path에 추가하여 사용할 수 있다
+
+1) API 공식문서 확인
+   - 전체 상속관계를 보려면 상속 계층도를 보면된다
+   - API 도큐먼트에서 String 클래스가 어떻게 정의되어있는지는 아래쪽에 있는 선언부를 보면 된다
+      클래스가 final인지 추상클래스인지 알 수 있고, 부모 클래스나 구현 인터페이스도 볼 수 있다
+   - 구성 멤버는 상단 메뉴 SUMMARY를 보면된다
+      멤버별 링크를 제공하는데 링크가 있으면 public, protected 공개된 멤버가 있다는 뜻이고
+      링크가 없다면 공개된 멤버가 없다는 뜻이다
+
+2) 모듈, 패키지, 라이브러리
+- 모듈(Module)
+   jdk9부터 도입된 모듈 시스템
+   코드를 논리적으로 그룹화하고 모듈간의 의존성을 관리하는 방법을 제공한다
+   모듈은 패키지와 라이브러리의 개념을 확장하고 런타임에서 모듈의 논리적인 단위로 코드를 로드하고 관리할 수 있다
+   코드의 의존성을 더욱 명확하게 정의하고 런타임 모듈 시스템을 통해 더 격리된 환경을 제공한다
+
+- 패키지(Package)
+   관련된 클래스 및 인터페이스를 그룹화하는 방법을 제공한다
+   패키지는 디렉터리 구조와 일치하고 패키지 내의 클래스들은 동일한 패키지 이름 공간안에 있어야한다
+   코드를 구조화하고 이름 충돌을 방지하는데 도움을 준다
+
+- 라이브러리(Library)
+   jar(Java Archive) 압축파일 형태로 존재한다
+   jar 파일에는 클래스와 인터페이스의 바이트코드 파일(.class) 파일들이 압축되어있다
+
+   재사용 가능한 코드 집합
+   특정 작업 또는 기능을 수행하기 위해 다른 프로그램에서 사용할 수 있게 해준다
+
+3) 외부 API
+   JAR 파일로 만든다
+   Java Archive : java 클래스 파일, 리소스파일 및 메타 데이터를 포함하는 아카이브 파일
+
+- jar 파일 생성
+   java 어플리케이션을 개발한 모든 파일들을 Jar파일로 패키징
+
+- jar 파일 배포
+   jar 파일을 웹사이트, FTP 서버, 클라우드 저장소 등에 업로드 하여 배포 가능
+
+파일 배포
+   배포할 프로젝트 마우스 우클릭 > Export > JAVA/JAR file 선택 > Next
+   > Destination 원하는 경로 선택 > Export Java Source Files .. 체크(API 주석 포함하겠다)
+   > Finish
+
+외부 API 추가(Build Path에 추가)
+   배포된 jar 파일 다운로드 > 프로젝트 우클릭 > Build Path > Configure Build Path
+   > Libraries 탭 클릭 > Add External JARs 클릭 > 저장된 경로의 .jar파일 더블 클릭으로 추가 > Apply 클릭
+   > Orders and Exports 탭 클릭 > Select All 클릭 > Apply and Close 클릭
+
+- jar 파일 실행
+   jar 파일을 실행하려면 Java Runtime Environment(jre)가 필요하다
+   java -jar [jar 파일명]
+
+
+4) API 주석
+	/**
+	*/
+	
+	API를 작성한 사람이 사용하는 사람이 알기 쉽도록 주석을 통해 알려줘야한다
+	
+	@param 	매개변수
+	@return 반환값
+	@throws 예외처리
+	@author 개발자명, 팀명
+	@since 	jdk버전
+	@see   	설명(다른 클래스들을 활용할 수 있는 경우 클래스명을 작성한다)
+	<p> 문단태그, <br>줄바꿈태그	
+
+java doc
+	https://www.oracle.com/kr/technical-resources/articles/java/javadoc-tool.html
+
+2. Object 클래스
+	
+	java.lang	- Object 클래스		모든 클래스의 최상위 부모 클래스
+			- System 클래스 		키보드로부터 데이터를 입력받을 때 사용
+						모니터(콘솔)로 출력하기 위해 사용
+			- 문자열 관련
+			String 클래스		문자열을 저장하고 조작할 때 사용
+			StringBuilder		효율적인 문자열 조작 기능이 필요할 때 사용
+			java.util.StringTokenizer	구분자로 연결된 문자열을 분리할 때 사용
+
+			- 포장관련(Warpper)	기본타입의 값을 포장할 때 사용, 문자열을 기본타입으로 변환시 사용
+			Byte, Short, Interger, Character, Float, Double, Boolean
+			- Math			수학계산이 필요할 때 사용
+			- Class			클래스의 메타 정보(이름, 구성맴버)등 조사할 때 사용
+1) Object 클래스의 메소드
+
+	메소드	 			용도
+	boolean eqals(Object obj)	객체의 번지를 비교하고 결과를 리턴
+	int hashCode()			객체의 해시코드를 리턴
+	String toStirng()		객체의 문저 정보 리턴	
+
+2) toString() 메소드
+	참조값을 문자열 형태로 출력한다
+	클래스경로와이름@16진수로변환된(해쉬코드)
+			toHexString(hashCode()) => 해시값, 16진수로 변환된(해시코드 값)
+	참조변수를 출력메소드로 출력하면 항상 toString()이 사용된다 => 참조값
+	toString 재정의를 통해 출력되는 문자열의 형태를 바꾸면 된다
+
+	객체 => 결과
+	객체명.toString => 결과
+	
+3) equals() 메소드
+	Object의 equals()는 사실 관계연산자(==)와 같다
+	(주소값 비교)String의 eqals()는 재정의되어 값을 비교한다
+	객체를 비교하고 싶다면, 비교기준을 재정의 해서 사용할 수 있다
+	
+
+3. Wrapper 클래스 
+	기본 자료형들의 클래스 타입
+	
+	기본타입(원시타입)				wrapper클래스(참조형타입)
+	short					Short
+	byte					Byte
+	int					Integer
+	long					Long
+	double					Double
+	float					Float
+	boolean					Boolean
+	char					Character
+	

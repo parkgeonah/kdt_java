@@ -1,6 +1,6 @@
 package lambdaTest02;
 
-
+import lambdaTask.CombInter;
 
 // 9번 람다 실습
 public class LambdaMain {
