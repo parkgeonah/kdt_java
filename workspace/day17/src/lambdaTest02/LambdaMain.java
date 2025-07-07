@@ -1,6 +1,6 @@
 package lambdaTest02;
 
-import lambdaTask.CombInter;
+import lambdaTask.CombInter1;
 
 // 9번 람다 실습
 public class LambdaMain {
@@ -11,7 +11,7 @@ public class LambdaMain {
 //		메인 메소드에서 익명클래스로 객체화
 //		메인메소드에서 람다식으로 객체화
 		
-		CombInter c = new CombInter() {
+		CombInter1 c = new CombInter1() {
 			
 			@Override
 			public void connection(String a, String b) {
@@ -27,7 +27,7 @@ public class LambdaMain {
 		// 3. 매개변수 타입 추론 가능하므로 없앤다
 		// 4. 매개변수가 2개이므로 ()생략 불가
 		// 5. 명령문 1줄이므로 중괄호 ; 생략
-		CombInter cI = (a,b) -> System.out.println(a + b);
+		CombInter1 cI = (a,b) -> System.out.println(a + b);
 		System.out.println(cI);
 		cI.connection("언럭키", "비키");
 		
